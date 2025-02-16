@@ -5,13 +5,13 @@ import CreatePoll from './components/CreatePoll';
 import PollList from './components/PllList';
 
 
-const socket = io('http://localhost:8000');
+const socket = io(process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000');
 export default function Home() {
   const [polls, setPolls] = useState([]);
 
   useEffect(() => {
     // Fetch initial polls
-    fetch('http://localhost:8000/polls')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/polls`)
       .then(res => res.json())
       .then(data => setPolls(data));
 

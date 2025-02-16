@@ -37,7 +37,8 @@ io.on('connection', (socket) => {
     socket.on('createPoll', async (pollData) => {
         const newPoll = new Poll(pollData);
         await newPoll.save();
-        io.emit('newPoll', newPoll);
+        const polls = await Poll.find().sort({ created_at: -1 });
+        io.emit('newPoll', { newPoll, polls });
     });
 
     // Listen for votes
