@@ -65,7 +65,7 @@ app.post('/polls', async (req, res) => {
 
 app.get('/polls', async (req, res) => {
     try {
-        const polls = await Poll.find();
+        const polls = await Poll.find().sort({ created_at: -1 });
         res.json(polls);
     } catch (err) {
         res.status(500).json({ message: err.message });
