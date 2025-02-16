@@ -10,7 +10,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server, {
     cors: {
-        origin: "*",
+        origin: "https://quick-polling-app.vercel.app/",
         methods: ["GET", "POST"]
     }
 });
